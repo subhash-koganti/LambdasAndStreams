@@ -13,12 +13,12 @@ public class UGCodeCafeDemo {
 		
 		long startTime = System.currentTimeMillis();
 		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotes(2000);
-		
+//		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuoteDataUsingRegularLoops(2000);
 		long endTime = System.currentTimeMillis();
 		
 		
 		long startTimeForLambdaIteration = System.currentTimeMillis();
-		rateQuoteSet = rateQuoteList.stream().parallel()
+		rateQuoteSet = rateQuoteList.stream()
 			.filter(rq -> rq.getBorrowerName().equals("HeMan"))
 			.peek((rq)-> System.out.println(rq))
 			.collect(Collectors.toSet());
