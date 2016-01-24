@@ -18,9 +18,9 @@ public class RateQuoteDataGenerator {
 	
 	private static  String[] premiumSourceCodes = {"A", "B" };
 	
-	private static long[] baseLoanAmounts = { 160000 , 200000,180000,300000,250000};
+	private static long[] baseLoanAmounts = { 160000 , 170000,180000,190000,200000,220000,240000,250000,270000, 290000, 300000,360000};
 	
-	private static long[] borrowerMonthlyIncomes = { 5000 , 6000,7000,8000,9000};
+	private static long[] borrowerMonthlyIncomes = { 1500,2000,2500,3000,3500,4000,4500, 5000 , 6000,7000,8000,9000};
 	
 	private static String[] borrowerNames = {"Batman" ,  "HeMan" , "SpiderMan" , "SuperMan" , "AntMan" }; 
 	
@@ -28,8 +28,7 @@ public class RateQuoteDataGenerator {
 	
 	public static List<RateQuote> createDummyRateQuotesUsingIntStream(int count){
 		
-		List<RateQuote> rateQuoteList = new ArrayList<RateQuote>();
-		
+		List<RateQuote> rateQuoteList = new  ArrayList<RateQuote>();
 		rateQuoteList = IntStream.range(1,count)
 			.mapToObj((p) -> {
 				
@@ -38,8 +37,9 @@ public class RateQuoteDataGenerator {
 				long borrowerIncome =borrowerMonthlyIncomes[new Random().nextInt(borrowerMonthlyIncomes.length)];
 				String borrowerName =borrowerNames[new Random().nextInt(borrowerNames.length)];
 				String lenderID = lenderIDs[new Random().nextInt(lenderIDs.length)];
-				
-				return new RateQuote(baseLoanAmount,borrowerName,borrowerIncome,lenderID,productList);
+				int borrowerAge = new Random().nextInt(60) + 25;
+				long quoteID = 100000 ; 
+				return new RateQuote(quoteID,baseLoanAmount,borrowerName,borrowerAge,borrowerIncome,lenderID,productList);
 				
 			}).collect(Collectors.toList());
 		
@@ -50,18 +50,18 @@ public class RateQuoteDataGenerator {
 	
 	public static List<RateQuote> createDummyRateQuotesUsingStreamGenerate(int count){
 		List<RateQuote> rateQuoteList = new ArrayList<RateQuote>();
-		
 		rateQuoteList = Stream.generate( () -> { 
 			List<Product> productList = createProductListUsingStreamGenerate();
 			long baseLoanAmount =baseLoanAmounts[new Random().nextInt(baseLoanAmounts.length)];
 			long borrowerIncome =borrowerMonthlyIncomes[new Random().nextInt(borrowerMonthlyIncomes.length)];
 			String borrowerName =borrowerNames[new Random().nextInt(borrowerNames.length)];
 			String lenderID = lenderIDs[new Random().nextInt(lenderIDs.length)];
-			
-			return new RateQuote(baseLoanAmount,borrowerName,borrowerIncome,lenderID,productList);
+			int borrowerAge = new Random().nextInt(60) + 25;
+			long quoteID = 100000 ; 
+			return new RateQuote(quoteID,baseLoanAmount,borrowerName,borrowerAge,borrowerIncome,lenderID,productList);
 		
 		}).limit(count).collect(Collectors.toList());
-		
+		rateQuoteList.sort((x, y) -> x.getBorrowerAge() - y.getBorrowerAge());
 		return rateQuoteList;
 	}
 	
@@ -116,8 +116,9 @@ public class RateQuoteDataGenerator {
 			long borrowerIncome =borrowerMonthlyIncomes[new Random().nextInt(borrowerMonthlyIncomes.length)];
 			String borrowerName =borrowerNames[new Random().nextInt(borrowerNames.length)];
 			String lenderID = lenderIDs[new Random().nextInt(lenderIDs.length)];
-			
-			rateQuoteList.add(new RateQuote(baseLoanAmount,borrowerName,borrowerIncome,lenderID,productList));
+			int borrowerAge = new Random().nextInt(60) + 25;
+			long quoteID = 100000 ; 
+			rateQuoteList.add(new RateQuote(quoteID,baseLoanAmount,borrowerName,borrowerAge,borrowerIncome,lenderID,productList));
 		}
 		
 		return rateQuoteList;
