@@ -62,5 +62,32 @@ public class RateQuoteDataGenerator {
 				return product;
 			}).collect(Collectors.toList());
 	}
+	
+	
+	public static List<RateQuote> createDummyRateQuoteDataUsingRegularLoops(int count){
+		List<RateQuote> rateQuoteList = new ArrayList<RateQuote>();
+		
+		for(int i=0; i< count ;i++){
+			List<Product> productList = new ArrayList<Product>();
+			for(int j=0;j<4;j++){
+				String paymentOptionCode  = paymentOptionCodes[new Random().nextInt(paymentOptionCodes.length)];
+				String paymentFrequencyCode = paymentFrequencyCodes[new Random().nextInt(paymentFrequencyCodes.length)];
+				String refundTypeCode = refundTypeCodes[new Random().nextInt(refundTypeCodes.length)];
+				String premiumSourceCode = premiumSourceCodes[new Random().nextInt(premiumSourceCodes.length)];
+				
+				productList.add(new Product(premiumSourceCode,paymentOptionCode,paymentFrequencyCode,refundTypeCode));
+			}
+			
+			
+			long baseLoanAmount =baseLoanAmounts[new Random().nextInt(baseLoanAmounts.length)];
+			long borrowerIncome =borrowerMonthlyIncomes[new Random().nextInt(borrowerMonthlyIncomes.length)];
+			String borrowerName =borrowerNames[new Random().nextInt(borrowerNames.length)];
+			String lenderID = lenderIDs[new Random().nextInt(lenderIDs.length)];
+			
+			rateQuoteList.add(new RateQuote(baseLoanAmount,borrowerName,borrowerIncome,lenderID,productList));
+		}
+		
+		return rateQuoteList;
+	}
 
 }
