@@ -12,8 +12,10 @@ public class UGCodeCafeDemo {
 		Set<RateQuote> rateQuoteSet = new HashSet<RateQuote>();
 		
 		long startTime = System.currentTimeMillis();
-		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotes(2000);
+//		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingIntStream(2000);
 //		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuoteDataUsingRegularLoops(2000);
+		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(2000);
+		
 		long endTime = System.currentTimeMillis();
 		
 		

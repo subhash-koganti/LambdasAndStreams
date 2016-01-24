@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class RateQuoteDataGenerator {
@@ -25,7 +26,7 @@ public class RateQuoteDataGenerator {
 	
 	private static String[] lenderIDs = {"329999120" ,"329999111" , "329999122" ,"329999223" };
 	
-	public static List<RateQuote> createDummyRateQuotes(int count){
+	public static List<RateQuote> createDummyRateQuotesUsingIntStream(int count){
 		
 		List<RateQuote> rateQuoteList = new ArrayList<RateQuote>();
 		
@@ -47,7 +48,39 @@ public class RateQuoteDataGenerator {
 		return rateQuoteList;
 	}
 	
+	public static List<RateQuote> createDummyRateQuotesUsingStreamGenerate(int count){
+		List<RateQuote> rateQuoteList = new ArrayList<RateQuote>();
+		
+		rateQuoteList = Stream.generate( () -> { 
+			List<Product> productList = createProductListUsingStreamGenerate();
+			long baseLoanAmount =baseLoanAmounts[new Random().nextInt(baseLoanAmounts.length)];
+			long borrowerIncome =borrowerMonthlyIncomes[new Random().nextInt(borrowerMonthlyIncomes.length)];
+			String borrowerName =borrowerNames[new Random().nextInt(borrowerNames.length)];
+			String lenderID = lenderIDs[new Random().nextInt(lenderIDs.length)];
+			
+			return new RateQuote(baseLoanAmount,borrowerName,borrowerIncome,lenderID,productList);
+		
+		}).limit(count).collect(Collectors.toList());
+		
+		return rateQuoteList;
+	}
 	
+	
+
+	private static List<Product> createProductListUsingStreamGenerate() {
+		List<Product> productList = new ArrayList<Product>();
+		productList = Stream.generate( () -> { 
+			String paymentOptionCode  = paymentOptionCodes[new Random().nextInt(paymentOptionCodes.length)];
+			String paymentFrequencyCode = paymentFrequencyCodes[new Random().nextInt(paymentFrequencyCodes.length)];
+			String refundTypeCode = refundTypeCodes[new Random().nextInt(refundTypeCodes.length)];
+			String premiumSourceCode = premiumSourceCodes[new Random().nextInt(premiumSourceCodes.length)];
+			
+			Product product = new Product(premiumSourceCode,paymentOptionCode,paymentFrequencyCode,refundTypeCode);
+			return product;
+		
+		}).limit(4).collect(Collectors.toList());
+		return productList;
+	}
 
 	private static List<Product> createProductList() {
 		return IntStream.rangeClosed(1,4)
