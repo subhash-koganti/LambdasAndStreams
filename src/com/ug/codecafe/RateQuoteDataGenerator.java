@@ -24,7 +24,7 @@ public class RateQuoteDataGenerator {
 	
 	private static String[] borrowerNames = {"Batman" ,  "HeMan" , "SpiderMan" , "SuperMan" , "AntMan" }; 
 	
-	private static String[] lenderIDs = {"329999120" ,"329999111" , "329999122" ,"329999223" };
+	private static String[] lenderIDs = {"329999120" ,"329999121" , "329999122" ,"329999123" };
 	
 	public static List<RateQuote> createDummyRateQuotesUsingIntStream(int count){
 		
