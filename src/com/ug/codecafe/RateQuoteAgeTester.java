@@ -1,5 +1,9 @@
 package com.ug.codecafe;
-
+/**
+ * 
+ * @author koganti
+ *
+ */
 public class RateQuoteAgeTester implements RateQuoteTester {
 
 	@Override

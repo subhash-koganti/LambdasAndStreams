@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-
+/**
+ * 
+ * @author koganti
+ *
+ */
 public class RateQuoteDataGenerator {
 	
 	private static String[] paymentOptionCodes = {"R", "Y" ,"P","X","FHA" };

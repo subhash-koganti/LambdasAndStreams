@@ -1,5 +1,9 @@
 package com.ug.codecafe;
-
+/**
+ * 
+ * @author koganti
+ *
+ */
 public class Product {
 	
 	private String premiumSourceCode;

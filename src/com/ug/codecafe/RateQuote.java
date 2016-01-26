@@ -1,7 +1,11 @@
 package com.ug.codecafe;
 
 import java.util.List;
-
+/**
+ * 
+ * @author koganti
+ *
+ */
 public class RateQuote {
 
 	private long quoteID;
