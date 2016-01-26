@@ -15,12 +15,7 @@ public class UGCodeCafeDemo {
 		
 		Set<RateQuote> rateQuoteSet = new HashSet<RateQuote>();
 		
-		long startTime = System.currentTimeMillis();
-//		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingIntStream(2000);
-//		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuoteDataUsingRegularLoops(2000);
 		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(2000);
-		
-		long endTime = System.currentTimeMillis();
 		
 		
 		long startTimeForLambdaIteration = System.currentTimeMillis();
@@ -30,8 +25,6 @@ public class UGCodeCafeDemo {
 			.collect(Collectors.toSet());
 		
 		long endTimeForLambdaIteration = System.currentTimeMillis();
-		
-		
 		
 		
 		
@@ -48,7 +41,6 @@ public class UGCodeCafeDemo {
 		
 		
 		
-		System.out.println("Total Time taken for data Creation is " + ( endTime - startTime) + " milli secs");
 		System.out.println("Total Time taken for Lambda Iteration is " + ( endTimeForLambdaIteration - startTimeForLambdaIteration) + " milli secs");
 		System.out.println("Total Time taken for Regular Iteration is " + ( endTimeForRegularIteration - startTimeForRegularIteration) + " milli secs");
 		
