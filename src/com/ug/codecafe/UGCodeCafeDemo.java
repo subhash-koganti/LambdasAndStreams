@@ -15,7 +15,7 @@ public class UGCodeCafeDemo {
 		
 		Set<RateQuote> rateQuoteSet = new HashSet<RateQuote>();
 		
-		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(2000);
+		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(1000);
 		
 		
 		long startTimeForLambdaIteration = System.currentTimeMillis();
