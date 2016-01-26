@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * @author koganti
  *
  */
-public class UGCodeCafeDemo {
+public class UGCodeCafeDemo_Streams {
 	
 	public static void main(String[] args) {
 		
