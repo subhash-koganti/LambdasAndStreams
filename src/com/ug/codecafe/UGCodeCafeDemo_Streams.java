@@ -15,16 +15,17 @@ public class UGCodeCafeDemo_Streams {
 		
 		Set<RateQuote> rateQuoteSet = new HashSet<RateQuote>();
 		
-		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(1000);
+		List<RateQuote> rateQuoteList = RateQuoteDataGenerator.createDummyRateQuotesUsingStreamGenerate(10000);
 		
 		
 		long startTimeForLambdaIteration = System.currentTimeMillis();
 		rateQuoteSet = rateQuoteList.stream()
 			.filter(rq -> rq.getBorrowerName().equals("HeMan"))
-			.peek((rq)-> System.out.println(rq))
+//			.peek((rq)-> System.out.println(rq))
 			.collect(Collectors.toSet());
 		
-		long endTimeForLambdaIteration = System.currentTimeMillis();
+		long endTimeForLambdaIteration = System.currentTimeMillis
+				();
 		
 		
 		
@@ -34,7 +35,7 @@ public class UGCodeCafeDemo_Streams {
 		for(int i=0; i<rateQuoteList.size();i++){
 			if(rateQuoteList.get(i).getBorrowerName().equals("HeMan")){
 				rateQuoteSet.add(rateQuoteList.get(i));
-				System.out.println(rateQuoteList.get(i));
+//				System.out.println(rateQuoteList.get(i));
 			}
 		}
 		long endTimeForRegularIteration = System.currentTimeMillis();
