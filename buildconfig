@@ -1,0 +1,44 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: ${APPLICATION_NAME}-build
+metadata:
+  annotations:
+    description: s2i build for Relationship Service
+  name: ${APPLICATION_NAME}-build
+objects:
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      output:
+        pushSecret:
+          name: test-18080
+        to:
+          kind: DockerImage
+          name: test:18080/esi/${APPLICATION_NAME}:${APPLICATION_IMAGE_TAG}
+      postCommit: {}
+      resources: {}
+      runPolicy: Serial
+      source:
+        binary: {}
+        type: Binary
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: DockerImage
+            name: 'test:18080/esi/fuse-java-openshift:1.5-19.1580118028'
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+parameters:
+  - name: APPLICATION_IMAGE_TAG
+    value: latest
+  - name: APPLICATION_NAME
