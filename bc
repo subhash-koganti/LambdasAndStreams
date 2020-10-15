@@ -1,0 +1,43 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: '2019-11-18T14:17:12Z'
+  labels:
+    app: gso-jug-webapp
+  name: gso-jug-webapp
+  namespace: esi-build
+  resourceVersion: '319533573'
+  selfLink: /apis/build.openshift.io/v1/namespaces/esi-build/buildconfigs/gso-jug-webapp
+  uid: 1d3126d8-0a0e-11ea-9e44-00505681e8c8
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector:
+    rh-core: 'true'
+  output:
+    pushSecret:
+      name: nexus-cmgmi-local-18080
+    to:
+      kind: ImageStreamTag
+      name: 'gso-jug-webapp:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    binary: {}
+    type: Binary
+  strategy:
+    sourceStrategy:
+      env:
+        - name: CUSTOM_INSTALL_DIRECTORIES
+          value: extensions/*
+      forcePull: true
+      from:
+        kind: DockerImage
+        name: 'nexus.cmgmi.local:18079/archmi/openjdk-8:latest'
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers: []
+status:
+  lastVersion: 7
